@@ -3,7 +3,7 @@
  *
  * v2(§사용자 확정 최종 폴리시): 마커를 이전 버전보다 훨씬 절제된 크기로 그린다. 정기 매수는
  * 저채도 회색 점(지름 3~4px, opacity 0.45~0.55)으로 가격선에 거의 묻히게, 조건부(추가) 매수만
- * 흰 테두리를 두른 노란 점(7~8px)으로 도드라지게, 선택된 점만 검은 원 + 흰 halo(10px)로 강조한다.
+ * 흰 테두리를 두른 블루 점(7~8px)으로 도드라지게, 선택된 점만 검은 원 + 흰 halo(10px)로 강조한다.
  * 레일(하단 세로 막대)은 어떤 버전에서도 쓰지 않는다.
  *
  * 초기 진입 시에는 아무 점도 자동 선택하지 않는다(§사용자 확정 — 이전 버전의 "가장 최근 매수
@@ -233,7 +233,7 @@ export function EventChart({ series, events, priceCurrency, quantities = false, 
           );
         })}
 
-        {/* 조건부(추가) 매수 — 흰 테두리를 두른 노란 점(7.5px). 정기 매수보다 항상 크고 진하게
+        {/* 조건부(추가) 매수 — 흰 테두리를 두른 블루 점(7.5px). 정기 매수보다 항상 크고 진하게
             그려 구분한다. */}
         {conditionalMarkers.map((marker) => {
           const isSelected = selected !== null && markerKey(selected) === markerKey(marker);
@@ -304,7 +304,7 @@ export function EventChart({ series, events, priceCurrency, quantities = false, 
 
       {/* 범례 — 실제 마커와 정확히 같은 모양·색으로 그린다("선택한 매수"도 별도 항목으로
           둬서 검은 원이 무엇을 뜻하는지 알 수 있게 한다). 추가 매수가 0회여도 범례 자체는
-          유지한다 — 차트에 실제로 그리는 노란 점만 없을 뿐이다. 폭이 좁으면 자연스럽게 줄바꿈된다. */}
+          유지한다 — 차트에 실제로 그리는 블루 점만 없을 뿐이다. 폭이 좁으면 자연스럽게 줄바꿈된다. */}
       <ul className="flex flex-wrap gap-x-4 gap-y-2">
         <li className="flex items-center gap-1.5 text-caption text-text-secondary">
           <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>

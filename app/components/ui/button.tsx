@@ -5,7 +5,7 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "lg" | "md" | "sm";
 
 const variantClass: Record<Variant, string> = {
-  // 노란 액션 + 어두운 텍스트 (그림자·그라데이션 없음)
+  // 블루 액션 + 흰 텍스트 (그림자·그라데이션 없음)
   primary:
     "bg-action text-action-text hover:bg-action-hover active:bg-action-pressed disabled:bg-surface-strong disabled:text-text-tertiary",
   secondary:

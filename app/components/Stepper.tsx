@@ -9,7 +9,7 @@ export interface Step {
 
 /**
  * 세로 진행 스텝퍼. 단순 스피너를 쓰지 않는다.
- * 현재 진행 단계에만 노란색(action)을 사용한다.
+ * 현재 진행 단계에만 액션 블루를 사용한다.
  */
 export function Stepper({ steps }: { steps: Step[] }) {
   return (
