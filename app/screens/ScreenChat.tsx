@@ -606,6 +606,17 @@ export function ScreenChat() {
   const [startOverSheetOpen, setStartOverSheetOpen] = React.useState(false);
   const [helpOpen, setHelpOpen] = React.useState(false);
   const helpButtonRef = React.useRef<HTMLButtonElement | null>(null);
+  const inputTextareaRef = React.useRef<HTMLTextAreaElement | null>(null);
+
+  // 입력창은 rows=1 고정이라 줄바꿈되는 텍스트를 넣으면 두 번째 줄이 스크롤 영역에
+  // 가려 위쪽이 잘려 보였다(§회귀 — 2줄 이상 입력 시 textarea 높이 미조정). 값이
+  // 바뀔 때마다 실제 스크롤 높이만큼 늘려 잘리지 않게 한다(최대 높이는 CSS max-h-32).
+  React.useLayoutEffect(() => {
+    const el = inputTextareaRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = `${el.scrollHeight}px`;
+  }, [value]);
 
   const isRestorePending = chatPhase === "restorePending";
   const isCollecting = chatPhase === "collecting";
@@ -851,6 +862,7 @@ export function ScreenChat() {
     footer = (
       <div className="flex items-end gap-2">
         <textarea
+          ref={inputTextareaRef}
           value={value}
           onChange={(event) => setValue(event.target.value)}
           onKeyDown={(event) => {
@@ -861,7 +873,7 @@ export function ScreenChat() {
           }}
           rows={1}
           disabled={isInterpreting}
-          className="min-h-12 flex-1 resize-none rounded-full border-none bg-surface px-5 py-3 text-body text-text-primary placeholder:text-text-tertiary shadow-none focus:shadow-none focus:outline-none focus:ring-0"
+          className="min-h-12 max-h-32 flex-1 resize-none overflow-y-auto rounded-full border-none bg-surface px-5 py-3 text-body text-text-primary placeholder:text-text-tertiary shadow-none focus:shadow-none focus:outline-none focus:ring-0"
           placeholder="투자 방법을 적어주세요"
           aria-label="투자 생각 입력"
         />

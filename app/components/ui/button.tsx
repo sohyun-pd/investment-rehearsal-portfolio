@@ -7,7 +7,7 @@ type Size = "lg" | "md" | "sm";
 const variantClass: Record<Variant, string> = {
   // 블루 액션 + 흰 텍스트 (그림자·그라데이션 없음)
   primary:
-    "bg-action text-action-text hover:bg-action-hover active:bg-action-pressed disabled:bg-surface-strong disabled:text-text-tertiary",
+    "bg-action text-action-text hover:bg-action-hover active:bg-action-pressed disabled:bg-surface disabled:text-text-tertiary",
   secondary:
     "bg-surface text-text-primary border border-border hover:bg-surface-strong active:bg-surface-strong disabled:text-text-tertiary",
   ghost: "bg-transparent text-text-secondary hover:bg-surface active:bg-surface-strong",
