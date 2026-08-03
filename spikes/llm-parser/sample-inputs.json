@@ -1,0 +1,36 @@
+{
+  "description": "LLM 파서 스파이크용 샘플 입력. 자연어 투자 지시문 -> 구조화 주문(intent) 파싱 검증.",
+  "cases": [
+    {
+      "id": "buy-simple",
+      "utterance": "삼성전자 10주 시장가로 사줘",
+      "expected": {
+        "action": "buy",
+        "symbol": "005930",
+        "symbolName": "삼성전자",
+        "quantity": 10,
+        "orderType": "market"
+      }
+    },
+    {
+      "id": "sell-limit",
+      "utterance": "애플 5주를 200달러에 팔아",
+      "expected": {
+        "action": "sell",
+        "symbol": "AAPL",
+        "symbolName": "애플",
+        "quantity": 5,
+        "orderType": "limit",
+        "limitPrice": 200
+      }
+    },
+    {
+      "id": "ambiguous",
+      "utterance": "그거 좀 정리해줘",
+      "expected": {
+        "action": "unknown",
+        "needsClarification": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": { "@/*": ["app/*"] }
+  },
+  "include": [
+    "spikes/**/*.ts",
+    "app/domain/**/*.ts",
+    "app/data/**/*.ts",
+    "app/types/**/*.ts",
+    "server/**/*.ts"
+  ],
+  "exclude": [
+    "app/data/market/client.ts",
+    "app/data/market/provider.ts",
+    "app/data/plan/client.ts",
+    "app/data/plan/provider.ts",
+    "app/data/plan/reviseClient.ts",
+    "app/data/review/client.ts",
+    "app/data/review/provider.ts"
+  ]
+}

@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* =========================================================================
+ * Design tokens — docs/product/DESIGN_SYSTEM.md 의 값만 사용한다.
+ * 여기에 없는 색/타이포/radius 를 화면에서 임의로 만들지 않는다.
+ * ========================================================================= */
+@theme {
+  /* Color */
+  --color-bg: #ffffff;
+  --color-surface: #f2f4f7;
+  /* 앱 프레임 바깥 배경 + 캐릭터·배지·로딩 스켈레톤 등 중립 강조 영역 — 옅은 블루. */
+  --color-surface-strong: #eaf4ff;
+
+  --color-text-primary: #191f28;
+  --color-text-secondary: #6b7684;
+  --color-text-tertiary: #8b95a1;
+
+  --color-border: #d9e0e8;
+  --color-border-strong: #c4cdd8;
+
+  --color-action: #3182f6;
+  /* primary 버튼 hover/active 는 같은 블루 계열에서 단계적으로 어두워진다. */
+  --color-action-hover: #2475e8;
+  --color-action-pressed: #1b64d8;
+  --color-action-text: #ffffff;
+  --color-action-soft: #e7f1ff;
+  /* 흰/회색 배경 버튼(secondary·chip 등)의 hover 배경(중립 쿨그레이). primary 버튼에는 쓰지
+     않는다(그 경우는 --color-action-hover 를 쓴다). */
+  --color-hover-neutral: #f2f4f7;
+
+  --color-positive: #e94b55; /* 상승 (red) */
+  --color-negative: #3b70e2; /* 하락 (blue) */
+  --color-warning: #f59f00;
+  --color-error: #e5484d;
+  --color-success: #20a464;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px; /* input */
+  --radius-lg: 16px; /* card */
+  --radius-button: 14px; /* button (문서 명시값) */
+  --radius-full: 999px;
+  --radius-input: 16px; /* 종목 검색 필드 전용(§StockSearchField) */
+  --radius-card: 14px; /* 종목 검색 결과 목록 전용(§StockSearchField) */
+
+  /* 종목 검색 컴포넌트 전용 — 나머지 화면은 기존 색상 토큰을 그대로 쓴다. */
+  --color-border-focus: #3182f6;
+  --color-text-placeholder: #8b95a1;
+  --color-surface-hover: #eaf4ff;
+
+  /* Typography scale */
+  --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --text-display: 28px;
+  --text-display--line-height: 38px;
+  --text-display--font-weight: 700;
+
+  --text-page: 24px;
+  --text-page--line-height: 34px;
+  --text-page--font-weight: 700;
+
+  --text-section: 20px;
+  --text-section--line-height: 28px;
+  --text-section--font-weight: 700;
+
+  --text-card: 17px;
+  --text-card--line-height: 24px;
+  --text-card--font-weight: 600;
+
+  --text-body: 16px;
+  --text-body--line-height: 25px;
+  --text-body--font-weight: 400;
+
+  --text-caption: 13px;
+  --text-caption--line-height: 19px;
+  --text-caption--font-weight: 400;
+
+  --text-num: 24px;
+  --text-num--line-height: 32px;
+  --text-num--font-weight: 700;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-surface-strong); /* 앱 프레임 바깥 배경 */
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  /* Pretendard 기본 자간이 살짝 넓어 보여 전체 텍스트에 -0.5px 를 기본값으로 둔다(§사용자
+     확정). 한글 줄바꿈 규칙(keep-all 등)과는 독립적이라 줄바꿈 위치에 영향을 주지 않는다. */
+  letter-spacing: -0.5px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* 한글 줄바꿈 — 마지막 한 글자가 다음 줄에 혼자 떨어지는 문제를 전수 수정한다(§사용자
+     확정). 어절 단위로만 줄을 바꾸고(keep-all), 그래도 컨테이너보다 긴 단어(URL 등)는
+     넘치지 않게 필요할 때만 단어 내부에서 줄바꿈한다(break-word) — break-all 은 쓰지
+     않는다(한글 단어 중간을 아무 데서나 끊는다). */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-break: strict;
+}
+
+/* 핵심 숫자: tabular numbers */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 숫자와 단위(원·주·회·%p 등)가 줄바꿈으로 분리되지 않게 한다(§사용자 확정). 값 전체를
+   감싸는 span 에 붙인다 — 문장 전체에 걸지 않는다(문장은 keep-all 로 자연스럽게 접는다). */
+.nowrap-value {
+  white-space: nowrap;
+}
+
+/* 첫 진입 인사말 말풍선 등장 모션(§사용자 확정) — opacity 0→1 · translateY 6px→0, 최초
+   진입 시 한 번만 재생한다. 타이핑 모션(글자 하나씩 출력)은 쓰지 않는다. */
+@keyframes message-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-message-in {
+  animation: message-in 200ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-message-in {
+    animation: none;
+  }
+}

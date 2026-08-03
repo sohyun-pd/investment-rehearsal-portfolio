@@ -1,0 +1,55 @@
+# dependencies
+node_modules/
+
+# env — 실제 키는 .env.local 에만 저장, 절대 커밋 금지
+.env
+.env.local
+.env.*.local
+
+# Cloudflare Pages Functions 로컬 시크릿 — .dev.vars 도 절대 커밋 금지(production 은 dashboard/wrangler pages secret put)
+.dev.vars
+.dev.vars.*
+.wrangler/
+
+# build output
+dist/
+*.tsbuildinfo
+
+# logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+.obsidian/
+
+# Claude Code 로컬 도구 설정 — 개인 세션 상태, 공유 저장소에 넣지 않는다
+.claude/
+
+# 타사 앱 UI 리서치 원본 캡처 — 로컬 조사 자료로만 보관한다(docs/product/research/README.md
+# 참고). 판단·관찰 내용은 텍스트로 저장소에 남기고, 이미지 원본은 공개 저장소에 올리지 않는다.
+docs/product/research/screenshots/
+
+# 카카오페이증권 과제용 별도 랜딩 페이지 — 이 제품(투자 리허설)과 무관한 별도 산출물이라
+# 이 저장소·배포 범위에서 제외한다(로컬에는 그대로 보관, 이후 별도 저장소로 분리 예정).
+temporary/
+
+# QA 중 만들어진 임시 산출물
+undefined/
+*.tmp.*
+screenshots/
+screenshot/
+videos/
+test-results/
+playwright-report/
+trace/
+traces/
+artifacts/
+tmp/
+temp/
+coverage/
+browser-profile/
+playwright/.cache/

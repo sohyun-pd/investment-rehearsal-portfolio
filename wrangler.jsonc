@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "invest-rehearsal-portfolio",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-07-28",
+  // @anthropic-ai/sdk(POST /api/plan/interpret 에서 사용)가 내부적으로 node:fs·node:path 를
+  // 참조하는 코드 경로를 갖고 있어 필요하다. 시장 데이터 라우트는 이 플래그 없이도 동작한다.
+  "compatibility_flags": ["nodejs_compat"],
+  // §production 안정성 — AI 를 호출하는 세 라우트(plan/interpret · plan/revise · review)가
+  // 공유하는 rate limiter 카운터 저장소. Workers 전용 "Rate Limiting binding"(ratelimits
+  // 필드)은 Pages 프로젝트 설정 검증에서 거부돼(`wrangler pages secret put`/`deploy` 모두
+  // "Configuration file for Pages projects does not support 'ratelimits'"로 실패) 대신 KV
+  // 로 직접 세션별 카운터를 구현한다(server/rateLimit.ts). id 는 아래 `wrangler kv namespace
+  // create`로 실제 발급받은 값이다.
+  "kv_namespaces": [
+    { "binding": "AI_RATE_LIMIT_KV", "id": "05078b148a59473abfc96dc80ba8f07c" }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

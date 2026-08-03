@@ -1,0 +1,21 @@
+{
+  "description": "시장 데이터 API 스파이크용 Mock 응답. provider 미확정이라 표준화된 Quote 형태로 정규화 검증.",
+  "quotes": {
+    "005930": {
+      "symbol": "005930",
+      "name": "삼성전자",
+      "currency": "KRW",
+      "price": 74500,
+      "previousClose": 73800,
+      "timestamp": "2026-07-28T05:30:00Z"
+    },
+    "AAPL": {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "currency": "USD",
+      "price": 231.4,
+      "previousClose": 229.87,
+      "timestamp": "2026-07-28T05:30:00Z"
+    }
+  }
+}
