@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "invest-rehearsal-portfolio",
+  "name": "invest-ttok",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-07-28",
   // @anthropic-ai/sdk(POST /api/plan/interpret 에서 사용)가 내부적으로 node:fs·node:path 를

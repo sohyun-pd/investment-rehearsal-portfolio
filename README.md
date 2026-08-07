@@ -10,7 +10,7 @@ AI 투자 시뮬레이션 프로토타입입니다.
 
 ## 링크
 
-- Live demo: https://invest-rehearsal-portfolio.pages.dev
+- Live demo: https://invest-ttok.pages.dev
 - Product overview: [`docs/product/PRODUCT_OVERVIEW.md`](./docs/product/PRODUCT_OVERVIEW.md)
 - Local setup: [아래 "로컬 실행"](#로컬-실행)
 - Architecture: [아래 "기술 구성"](#기술-구성)
@@ -91,12 +91,12 @@ Cloudflare Pages(직접 업로드 방식, git 연동 아님) + Pages Functions.
 
 ```bash
 npm run build
-npx wrangler pages deploy dist --project-name invest-rehearsal-portfolio
+npx wrangler pages deploy dist --project-name invest-ttok
 ```
 
 - `wrangler.jsonc` — Pages 프로젝트 설정. AI 호출 라우트(계획 해석·수정·결과 설명)에는
   세션 기준 rate limit(Cloudflare KV 카운터)이 걸려 있다.
-- 시크릿(API 키 등)은 `wrangler pages secret put <NAME> --project-name invest-rehearsal-portfolio`
+- 시크릿(API 키 등)은 `wrangler pages secret put <NAME> --project-name invest-ttok`
   로 등록한다 — 저장소에는 절대 값을 넣지 않는다.
 - 미국 종목 과거 가격·종목 검색은 Cloudflare Cache API 로 캐시해 같은 조회를 반복하지
   않는다(사용자 개인 계획·AI 응답은 캐시하지 않는다).
