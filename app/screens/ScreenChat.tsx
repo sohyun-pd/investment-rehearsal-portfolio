@@ -105,7 +105,7 @@ export function resolveQuestionUiKind(
 const MAX_LENGTH = 500;
 const MIN_LENGTH = 2;
 
-const RECOVERY_EXAMPLES = ["네이버 매달 10만 원", "애플 매달 100달러", "삼성전자 매주 5만원, 10% 떨어지면 20만 더"];
+const RECOVERY_EXAMPLES = ["네이버 매달 10만 원", "애플 매달 100달러"];
 
 const BOT_NAME = "똑대리";
 
